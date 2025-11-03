@@ -20,12 +20,10 @@ import java.math.BigDecimal;
 public class ServicoController {
 
     @Autowired
-    private ServicoController servicoController;
+    private ServicoRepository servicoRepository;
 
     @Autowired
     private EstabelecimentoRepository estabelecimentoRepository;
-    @Autowired
-    private ServicoRepository servicoRepository;
 
     public record ServicoRequest(
             String nome,
