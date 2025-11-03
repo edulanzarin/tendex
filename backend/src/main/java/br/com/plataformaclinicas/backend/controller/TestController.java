@@ -1,4 +1,4 @@
-package br.com.tendex.backend.controller;
+package br.com.plataformaclinicas.backend.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
