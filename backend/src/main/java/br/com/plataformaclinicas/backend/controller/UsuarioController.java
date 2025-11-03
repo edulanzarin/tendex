@@ -8,14 +8,18 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/usuarios")
-@CrossOrigin(origins = "*")
 public class UsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @PostMapping("/registrar")
     public ResponseEntity<Usuario> registrar(@RequestBody Usuario novoUsuario) {
+
+        novoUsuario.setSenha(passwordEncoder.encode(novoUsuario.getSenha()));
 
         Usuario usuarioSalvo = usuarioRepository.save(novoUsuario);
         return ResponseEntity.ok(usuarioSalvo);
