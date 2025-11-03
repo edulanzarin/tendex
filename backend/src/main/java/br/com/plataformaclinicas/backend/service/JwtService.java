@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,7 +17,7 @@ import java.util.Map;
 @Service
 public class JwtService {
 
-    @Value("${JWT_SECRET")
+    @Value("${JWT_SECRET}")
     private String SECRET_KEY;
 
     private static final long EXPIRATION_TIME = 1000 * 60 * 60 * 24;
@@ -34,7 +35,7 @@ public class JwtService {
     }
 
     private Key getSignKey() {
-        byte[] keyBytes = Decoders.BASE64URL.decode(SECRET_KEY);
+        byte[] keyBytes = SECRET_KEY.getBytes(StandardCharsets.UTF_8);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 }
